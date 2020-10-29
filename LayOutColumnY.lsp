@@ -1,9 +1,10 @@
-(defun C:LAYOutColumnX( / osm C2C Origin Origin_X Origin_Y End End_X End_Y ColSizeX ColSizeY P_C0 P_C1 P_C00 P_C11 P_C0_i P_C1_i P_C0_c 
+(defun C:LAYOutColumnY( / osm C2C Origin Origin_X Origin_Y End End_X End_Y ColSizeX ColSizeY P_C0 P_C1 P_C00 P_C11 P_C0_i P_C1_i P_C0_c 
 		     ColIntr EqInterval temp_Origin)
 		;This autoLisp program is written by Ajay Yadav (AY) and named as L-AY-OutColumn i.e. LAYOutColumn.
 		;Choose origin of wall
 		;Enter length of wall below and above tie beam.
-		
+		(setq osm (getvar "osmode"))
+		(setvar "osmode" 0)
   		(setq ColSizeX 0.23 ColSizeY 0.23)
   
 		(setq Origin (getpoint "\nChoose Origin:"))
@@ -14,9 +15,6 @@
   		(setq End (list (+ Origin_X C2C) (+ Origin_Y 0)))
   		(setq End_X (car End))
 	       	(setq End_Y (car (cdr End)))
-
-		(setq osm (getvar "osmode"))
-		(setvar "osmode" 0)
   
   		(command "-layer" "m" "Centerline" "c" "t" "207,37,233" "Centerline" "")
 		(command "line" Origin End "");Centerline
