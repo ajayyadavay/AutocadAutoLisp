@@ -1,6 +1,7 @@
 (defun C:LAYOutColumnX( / osm C2C Origin Origin_X Origin_Y End End_X End_Y ColSizeX ColSizeY P_C0 P_C1 P_C00 P_C11 P_C0_i P_C1_i P_C0_c 
 		     ColIntr EqInterval temp_Origin)
 		;This autoLisp program is written by Ajay Yadav (AY) and named as L-AY-OutColumn i.e. LAYOutColumn.
+		;Download from https://github.com/ajayyadavay/AutocadAutoLisp
 		;Choose origin of wall
 		;Enter length of wall below and above tie beam.
 		
@@ -8,12 +9,12 @@
   
 		(setq Origin (getpoint "\nChoose Origin:"))
 		(setq Origin_X (car Origin))
-	       	(setq Origin_Y (car (cdr Origin)))
+	    (setq Origin_Y (car (cdr Origin)))
   
   		(setq C2C (getreal "\nEnter Center to Center distance m:"))
   		(setq End (list (+ Origin_X C2C) (+ Origin_Y 0)))
   		(setq End_X (car End))
-	       	(setq End_Y (car (cdr End)))
+	    (setq End_Y (car (cdr End)))
 
 		(setq osm (getvar "osmode"))
 		(setvar "osmode" 0)

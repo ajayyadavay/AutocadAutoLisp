@@ -1,6 +1,7 @@
 (defun C:LAYWall( / Sol_th PCC_th footX Origin Origin_X Origin_Y S_P1 P_P0 P_P1 slpX P_f1 TBeamY Col_Below Col_Above P_C2 P_C3 P_C4 P_TB1 P_TB2
 		    WallBelowTH WallAboveTH Sol_Hatch PCC_Hatch WA_Hatch WB_Hatch  P_TxtPCC P_TxtSol P_Title P_TBm Extline1 Extline2 GL_Lvl P_GL1 P_GL2 P_TxtGL distDim osm offorigin Arrowsize TxtHt Dec Gap TxtVerPos)
 		;This autoLisp program is written by Ajay Yadav (AY) and named as L-AY-Wall i.e. LAYWall.
+		;Download from https://github.com/ajayyadavay/AutocadAutoLisp
 		;Choose origin of wall
 		;Enter length of wall below and above tie beam.
 		(setq osm (getvar "osmode"))

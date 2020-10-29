@@ -1,6 +1,7 @@
 (defun C:LAYFooting( / Sol_th PCC_th footX Origin Origin_X Origin_Y S_P1 P_P0 P_P1 rect trap f_Proj colX slpX P_f1 P_f2 P_f3 P_f4 P_f5 P_f6 P_f7 P_f8 TBeamY Col_Below Col_Above TotalCol P_C2 P_C3 P_C4 P_TB1 P_TB2
 		    Sol_Hatch PCC_Hatch P_TxtPCC P_TxtSol P_Title P_TBm Extline1 Extline2 GL_Lvl P_GL1 P_GL2 P_TxtGL distDim osm offorigin Arrowsize TxtHt Dec Gap TxtVerPos)
 		;This autoLisp program is written by Ajay Yadav (AY) and named as L-AY-Footing i.e. LAYFooting.
+		;Download from https://github.com/ajayyadavay/AutocadAutoLisp
 		;Choose origin of footing
 		;Enter depth of rectangular and trapezoidal footing then enter length of column below and above tie beam.
 		(setq osm (getvar "osmode"))
