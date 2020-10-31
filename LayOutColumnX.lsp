@@ -64,7 +64,7 @@
 
 		(command "-layer" "m" "Dimension" "c" "t" "249,245,6" "Dimension" "")
   		(setq distDim (+ ColSizeY 0.5))
-  		(setq Out_In (getint "\nEnter -1 for outside and 1 for inside text:")); Outside = -1 and inside = +1
+  		(setq Out_In (getint "\nEnter -1 for above and 1 for below text:")); Above = -1 and Below = +1
 		(command "dimaligned" Origin End (list(+(car Origin) 0) (-(cadr Origin) (* Out_In distDim))));center to center distance
 
   		;text
