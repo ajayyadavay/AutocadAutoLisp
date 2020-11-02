@@ -1,4 +1,4 @@
-(defun C:LAYOutColumnX( / osm C2C Origin Origin_X Origin_Y End End_X End_Y ColSizeX ColSizeY P_C0 P_C1 P_C00 P_C11 P_C0_i P_C1_i P_C0_c 
+(defun C:LAYOutColumnX1( / osm C2C Origin Origin_X Origin_Y End End_X End_Y ColSizeX ColSizeY P_C0 P_C1 P_C00 P_C11 P_C0_i P_C1_i P_C0_c 
 		     ColIntr EqInterval temp_Origin offorigin Arrowsize TxtHt Dec Gap Extline1 Extline2 distDim P_Txt1 Txt1 Out_In)
 		;This autoLisp program is written by Ajay Yadav (AY) and named as L-AY-OutColumn i.e. LAYOutColumn.
 		;Download from https://github.com/ajayyadavay/AutocadAutoLisp
@@ -64,13 +64,13 @@
 
 		(command "-layer" "m" "Dimension" "c" "t" "249,245,6" "Dimension" "")
   		(setq distDim (+ ColSizeY 0.5))
-  		(setq Out_In (getint "\nEnter -1 for above and 1 for below text:")); Above = -1 and Below = +1
-		(command "dimaligned" Origin End (list(+(car Origin) 0) (-(cadr Origin) (* Out_In distDim))));center to center distance
+  		(setq Out_In (getint "\nEnter 1 for above and -1 for below text:")); Above = 1 and Below = -1
+		(command "dimaligned" Origin End (list(+(car Origin) 0) (+ (cadr Origin) (* Out_In distDim))));center to center distance
 
   		;text
   		(command "-layer" "m" "Text" "c" "t" "237,102,18" "Text" "")
 
- 		(setq P_Txt1 (list(/ (+(car Origin) (car End)) 2) (- (cadr Origin) (* Out_In (+ distDim 1)))))
+ 		(setq P_Txt1 (list(/ (+(car Origin) (car End)) 2) (+ (cadr Origin) (* Out_In (+ distDim 1)))))
   		(setq Txt1 (strcat (itoa ColIntr) " nos. of interior column @ " (rtos EqInterval 2 3) " m c/c"))
   		(command "_.Text" "_Style" "standard" "_Justify" "MC" P_Txt1 0.6 0 Txt1)
   
