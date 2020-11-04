@@ -57,7 +57,7 @@
 		(setvar "dimexo" 0.15)
   		(setvar "dimasz" 0.8)
   		(setvar "dimtxt" 0.6)
-  		(setvar "dimdec" 0)
+  		(setvar "dimdec" 3)
   		(setvar "dimgap" 0.5)
   		(setvar "dimse1" 1)
   		(setvar "dimse2" 1)
