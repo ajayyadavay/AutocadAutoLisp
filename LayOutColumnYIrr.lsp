@@ -1,5 +1,6 @@
 (defun C:LAYOutColumnYIrr( / osm C2C Origin Origin_X Origin_Y End End_X End_Y ColSizeX ColSizeY P_C0 P_C1 P_C00 P_C11 P_C0_i P_C1_i P_C0_c 
-		     ColIntr EqInterval temp_Origin offorigin Arrowsize TxtHt Dec Gap Extline1 Extline2 distDim P_Txt1 Txt1 Out_In i)
+		     ColIntr EqInterval temp_Origin offorigin Arrowsize TxtHt Dec Gap Extline1 Extline2 distDim P_Txt1 Txt1 Out_In i
+ 		     DmToh DmTih)
 		;This autoLisp program is written by Ajay Yadav (AY) and named as L-AY-OutColumn i.e. LAYOutColumn.
 		;Download from https://github.com/ajayyadavay/AutocadAutoLisp
 		;Choose origin of wall
@@ -50,6 +51,8 @@
   		(setvar "dimgap" 0.5)
   		(setvar "dimse1" 1)
   		(setvar "dimse2" 1)
+		(setvar "dimtih" 0)
+  		(setvar "dimtoh" 0)
 
   		(setq i 0)
   
@@ -94,6 +97,8 @@
   		(setvar "dimgap" Gap)
 		(setvar "dimse1" Extline1)
 		(setvar "dimse2" Extline2)
+		(setvar "dimtoh" DmToh)
+  		(setvar "dimtih" DmTih)
  		(setvar "osmode" osm)
 		(gc)
 		(princ)
