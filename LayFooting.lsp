@@ -7,7 +7,8 @@
 		;Enter depth of rectangular and trapezoidal footing then enter length of column below and above tie beam.
 		(setq osm (getvar "osmode"))
 		(setvar "osmode" 0)
-		(setq Sol_th 125 PCC_th 75 footX 900)
+		(setq Sol_th 125 PCC_th 75)
+  		(setq footX (getint "Enter width of footing mm:"))
 		(setq Origin (getpoint "Choose Origin:"))
 		(setq Origin_X (car Origin))
 	       	(setq Origin_Y (car (cdr Origin)))
