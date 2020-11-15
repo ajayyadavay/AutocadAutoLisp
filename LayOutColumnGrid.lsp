@@ -107,7 +107,7 @@
 			;column
 	  		(command "-layer" "m" "Column" "c" "t" "255,0,0" "Column" "")
 	  		(setq P_D1 (list (- (car P_G2) (/ ColSizeX 2)) (- (car (cdr P_G2)) (/ ColSizeY 2))))
-			(setq P_D2 (list (+ (car P_G2) (/ ColSizeX 2) (+ (car (cdr P_G2)) (/ ColSizeY 2))))
+			(setq P_D2 (list (+ (car P_G2) (/ ColSizeX 2)) (+ (car (cdr P_G2)) (/ ColSizeY 2))))
 			(command "rectangle" P_D1 P_D2)
 		)
   		
@@ -217,9 +217,9 @@
   		(setvar "dimgap" Gap)
 		(setvar "dimse1" Extline1)
 		(setvar "dimse2" Extline2)
+		(setvar "osmode" osm)
 		(setvar "dimtoh" DmToh)
   		(setvar "dimtih" DmTih)
- 		(setvar "osmode" osm)
 		(gc)
 		(princ)
 	)

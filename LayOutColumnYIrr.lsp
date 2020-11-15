@@ -24,12 +24,12 @@
 		(command "line" Origin End "");Centerline
 
  		(command "-layer" "m" "Column" "c" "t" "255,0,0" "Column" "")
-		(setq P_C0 (list (- Origin_X ColSizeX) (- Origin_Y ColSizeY)))
-		(setq P_C1 (list (+ Origin_X ColSizeX) (+ Origin_Y ColSizeY)))
+		(setq P_C0 (list (- Origin_X (/ ColSizeX 2)) (- Origin_Y (/ ColSizeY 2))))
+		(setq P_C1 (list (+ Origin_X (/ ColSizeX 2)) (+ Origin_Y (/ ColSizeY 2))))
 		(command "rectangle" P_C0 P_C1)
 
-  		(setq P_C00 (list (- End_X ColSizeX) (- End_Y ColSizeY)))
-		(setq P_C11 (list (+ End_X ColSizeX) (+ End_Y ColSizeY)))
+  		(setq P_C00 (list (- End_X (/ ColSizeX 2)) (- End_Y (/ ColSizeY 2))))
+		(setq P_C11 (list (+ End_X (/ ColSizeX 2)) (+ End_Y (/ ColSizeY 2))))
 		(command "rectangle" P_C00 P_C11)
 
   		(setq ColIntr (getint "\nEnter no. of interior columns:")); interior column number
@@ -65,8 +65,8 @@
 			(setq P_C0_c (list (+ (car temp_Origin) 0) (+ (car (cdr temp_Origin)) EqInterval)))
 			;column
 		  	(command "-layer" "m" "Column" "c" "t" "255,0,0" "Column" "")
-		  	(setq P_C0_i (list (- (car P_C0_c) ColSizeX) (- (car (cdr P_C0_c)) ColSizeY)))
-			(setq P_C1_i (list (+ (car P_C0_c) ColSizeX) (+ (car (cdr P_C0_c)) ColSizeY)))
+		  	(setq P_C0_i (list (- (car P_C0_c) (/ ColSizeX 2)) (- (car (cdr P_C0_c)) (/ ColSizeY 2))))
+			(setq P_C1_i (list (+ (car P_C0_c) (/ ColSizeX 2)) (+ (car (cdr P_C0_c)) (/ ColSizeY 2))))
 			(command "rectangle" P_C0_i P_C1_i)
 
 			;dimension
@@ -97,9 +97,9 @@
   		(setvar "dimgap" Gap)
 		(setvar "dimse1" Extline1)
 		(setvar "dimse2" Extline2)
+  		(setvar "osmode" osm)
 		(setvar "dimtoh" DmToh)
   		(setvar "dimtih" DmTih)
- 		(setvar "osmode" osm)
 		(gc)
 		(princ)
 	)
