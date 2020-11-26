@@ -5,16 +5,21 @@
 		;Download from https://github.com/ajayyadavay/AutocadAutoLisp
 		;Choose origin of wall
 		;Enter length of wall below and above tie beam.
-		(setq osm (getvar "osmode"))
-		(setvar "osmode" 0)
-		(setq Sol_th 125 PCC_th 75)
+		
+		;(setq Sol_th 125 PCC_th 75)
 		(setq footX (getint "Enter width of wall footing mm:"))
+  		(setq Sol_th (getint "Enter thickness of wall Soling mm:"))
+  		(setq PCC_th (getint "Enter thickness of wall PCC mm:"))
   		(setq WallBelowTH 230 WallAboveTH 230)
   		(setq slpX (/ (- footX WallBelowTH) 2))
   		
 		(setq Origin (getpoint "Choose Origin:"))
 		(setq Origin_X (car Origin))
 	       	(setq Origin_Y (car (cdr Origin)))
+
+  		(setq osm (getvar "osmode"))
+		(setvar "osmode" 0)
+  
 		(setq S_P1 (list (+ Origin_X footX) (+ Origin_Y Sol_th)))
   		(command "-layer" "m" "Soling" "c" "t" "207,37,233" "Soling" "")
 		(command "rectangle" Origin S_P1);soling
@@ -73,9 +78,9 @@
  		(setq P_TBm (list (+ (car P_TB2) 150) (- (car (cdr P_TB2)) (/ TBeamY 2))))
   		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TBm 60 0 "Tie Beam")
 		(setq P_TxtPCC (list (+ (car S_P1) 220) (+ (car (cdr S_P1)) (/ 0 2))))
-  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtPCC 60 0 "PCC 75 mm")
+  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtPCC 60 0 (strcat "PCC " (itoa PCC_th) "mm"))
  		(setq P_TxtSol (list (+ (car S_P1) 220) (- (car (cdr S_P1)) (/ Sol_th 1))))
-  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtSol 60 0 "Soling 125 mm")
+  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtSol 60 0 (strcat "Soling " (itoa Sol_th) "mm"))
  		(setq P_Title (list (+ (car Origin) (/ footX 2)) (- (car (cdr Origin)) 350)))
   		(command "_.Text" "_Style" "standard" "_Justify" "MC" P_Title 150 0 "Section of Wall")
 
@@ -119,9 +124,10 @@
   		;(setvar "dimtad" TxtVerPos)
 		(setvar "dimse1" Extline1)
 		(setvar "dimse2" Extline2)
+  		(setvar "osmode" osm)
 		(setvar "dimtoh" DmToh)
   		(setvar "dimtih" DmTih)
- 		(setvar "osmode" osm)
+ 		
 		(gc)
 		(princ)
 	)

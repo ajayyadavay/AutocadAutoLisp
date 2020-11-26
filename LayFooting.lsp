@@ -5,13 +5,18 @@
 		;Download from https://github.com/ajayyadavay/AutocadAutoLisp
 		;Choose origin of footing
 		;Enter depth of rectangular and trapezoidal footing then enter length of column below and above tie beam.
-		(setq osm (getvar "osmode"))
-		(setvar "osmode" 0)
-		(setq Sol_th 125 PCC_th 75)
+		
+		;(setq Sol_th 125 PCC_th 75)
   		(setq footX (getint "Enter width of footing mm:"))
+  		(setq Sol_th (getint "Enter thickness of Soling mm:"))
+  		(setq PCC_th (getint "Enter thickness of PCC mm:"))
 		(setq Origin (getpoint "Choose Origin:"))
 		(setq Origin_X (car Origin))
 	       	(setq Origin_Y (car (cdr Origin)))
+
+  		(setq osm (getvar "osmode"))
+		(setvar "osmode" 0)
+  
 		(setq S_P1 (list (+ Origin_X footX) (+ Origin_Y Sol_th)))
   		(command "-layer" "m" "Soling" "c" "t" "207,37,233" "Soling" "")
 		(command "rectangle" Origin S_P1)
@@ -85,10 +90,10 @@
   		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TBm 60 0 "Tie Beam")
   
 		(setq P_TxtPCC (list (+ (car S_P1) 220) (+ (car (cdr S_P1)) (/ 0 2))))
-  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtPCC 60 0 "PCC 75 mm")
+  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtPCC 60 0 (strcat "PCC " (itoa PCC_th) "mm"))
 
  		(setq P_TxtSol (list (+ (car S_P1) 220) (- (car (cdr S_P1)) (/ Sol_th 1))))
-  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtSol 60 0 "Soling 125 mm")
+  		(command "_.Text" "_Style" "standard" "_Justify" "Left" P_TxtSol 60 0 (strcat "Soling " (itoa Sol_th) "mm"))
 
  		(setq P_Title (list (+ (car Origin) (/ footX 2)) (- (car (cdr Origin)) 350)))
   		(command "_.Text" "_Style" "standard" "_Justify" "MC" P_Title 150 0 "Section of Footing")
@@ -106,13 +111,15 @@
   		(setq P_TxtGL (list (+ (car P_GL2) (/ 0 2)) (+ (car (cdr P_GL2)) 50)))
   		(command "_.Text" "_Style" "standard" "_Justify" "MC" P_TxtGL 60 0 "GL")
 
+  		(command "-layer" "m" "PCC" "c" "t" "34,247,247" "PCC" "")
+  		(setq PCC_Hatch (list (+ (car P_P0) (/ footX 2)) (+ (car (cdr P_P0)) (/ PCC_th 2))))
+  		(command "-Hatch" "Properties" "AR-CONC" "10" "0" PCC_Hatch "")
+
   		(command "-layer" "m" "Soling" "c" "t" "207,37,233" "Soling" "")
   		(setq Sol_Hatch (list (+ (car Origin) (/ footX 2)) (+ (car (cdr Origin)) (/ Sol_th 2))))
   		(command "-Hatch" "Properties" "GRAVEL" "100" "0" Sol_Hatch "")
 
-  		(command "-layer" "m" "PCC" "c" "t" "34,247,247" "PCC" "")
-  		(setq PCC_Hatch (list (+ (car P_P0) (/ footX 2)) (+ (car (cdr P_P0)) (/ PCC_th 2))))
-  		(command "-Hatch" "Properties" "AR-CONC" "10" "0" PCC_Hatch "")
+  		
   
 		(setvar "dimexo" offorigin)
   		(setvar "dimasz" Arrowsize)
@@ -122,9 +129,10 @@
   		;(setvar "dimtad" TxtVerPos)
 		(setvar "dimse1" Extline1)
 		(setvar "dimse2" Extline2)
+ 		(setvar "osmode" osm)
   		(setvar "dimtoh" DmToh)
   		(setvar "dimtih" DmTih)
- 		(setvar "osmode" osm)
+ 		
 		(gc)
 		(princ)
 	)
