@@ -24,8 +24,8 @@
 		(command "line" Origin End "");Centerline
 
  		(command "-layer" "m" "Column" "c" "t" "255,0,0" "Column" "")
-		(setq P_C0 (list (- Origin_X ColSizeX) (- Origin_Y ColSizeY)))
-		(setq P_C1 (list (+ Origin_X ColSizeX) (+ Origin_Y ColSizeY)))
+		(setq P_C0 (list (- Origin_X (/ ColSizeX 2)) (- Origin_Y (/ ColSizeY 2))))
+		(setq P_C1 (list (+ Origin_X (/ ColSizeX 2)) (+ Origin_Y (/ ColSizeY 2))))
 		(command "rectangle" P_C0 P_C1)
 
   		(setq P_C00 (list (- End_X (/ ColSizeX 2)) (- End_Y (/ ColSizeY 2))))
